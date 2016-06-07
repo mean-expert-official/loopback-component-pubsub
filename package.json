@@ -1,0 +1,24 @@
+{
+  "name": "loopback-component-pubsub",
+  "version": "1.0.0",
+  "description": "A LoopBack component that provides publish/subscribe over WebSockets",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "IBM",
+    "StrongLoop",
+    "LoopBack",
+    "PubSub",
+    "WebSockets",
+    "SocketIO"
+  ],
+  "author": "Jonathan Casarrubias <http://twitter.com/johncasarrubias>",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.0.0-rc.5",
+    "socket.io": "^1.4.6",
+    "socketio-auth": "0.0.5"
+  }
+}
