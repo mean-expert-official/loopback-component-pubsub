@@ -1,6 +1,6 @@
 {
   "name": "loopback-component-pubsub",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A LoopBack component that provides publish/subscribe over WebSockets",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,10 @@
   ],
   "author": "Jonathan Casarrubias <http://twitter.com/johncasarrubias>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonathan-casarrubias/loopback-component-pubsub"
+  },
   "dependencies": {
     "async": "^2.0.0-rc.5",
     "socket.io": "^1.4.6",
