@@ -1,10 +1,12 @@
 # LoopBack Component PubSub
 
-A [LoopBack Framework](http://loopback.io) Component that provides publish/subscribe over WebSockets. This module will provide a publish/subscribe functionallity for [LoopBack Framework](http://loopback.io) Models.
+A [LoopBack Framework](http://loopback.io) Component that provides publish events over WebSockets.
+
+This module will provide publish/subscribe functionality for [LoopBack Framework](http://loopback.io) Models that implements the `PubSub Mixin`.
 
 # Publish Subscribe
 
-The publish subscribe pattern allow clientst to subscribe to specific events, listening for data streams a server publish everytime there are changes.
+The publish/subscribe pattern allow clients to subscribe to specific events, listening for data streams a server publish everytime there are new changes.
 
 ![Publish Subscribe Pattern](https://blog.gopheracademy.com/postimages/plumbing-and-semantics/pub-sub.jpg)
 
@@ -44,7 +46,7 @@ Update the  `server/model-config.json` as follows:
 
 # Configure Models
 
-You are able to define in which Models you want to make available the PubSub functionallity by explicitaly defining it in the model json file.
+Thanks to the provided mixin, you are able to define in which Models you want to make available the PubSub functionality by explicitly defining it in the model json file.
 
 ```json
 {
@@ -69,7 +71,7 @@ You can subscribe to any valid remote method within your model as follows:
         client.on('[POST]/api/rooms', function (room) {
            console.info('Room ', room);
         });
-        // subscribe to new messages in the room with Id 1
+        // subscribe for new messages in the room with Id 1
         client.on('[POST]/api/rooms/1/messages', function (message) {
            console.info('Message ', message);
         });

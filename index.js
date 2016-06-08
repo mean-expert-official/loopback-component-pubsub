@@ -54,6 +54,7 @@ module.exports = function (app, options) {
     });*/
     // Handle Connection and Disconnection Events
     socket.on('connection', function (socket) {
+      console.info('A new user is connected');
       /*socket.on('authentication', function (value) {
         console.info('A user (%s) has been authenticated over web sockets', value.userId);
       });*/
