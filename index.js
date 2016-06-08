@@ -4,8 +4,7 @@
  **/
 var io = require('socket.io'),
 ioAuth = require('socketio-auth'),
-Pubsub = require('./pubsub'),
-async  = require('async')
+Pubsub = require('./pubsub')
 /**
  * @module LoopBack Component PubSub
  * @author Jonathan Casarrubias <http://twitter.com/johncasarrubias>
@@ -23,25 +22,18 @@ module.exports = (app, options) => {
    */
   options = Object.assign({
     auth     : false, // TODO: Change defaults for true when a tutorial for this module is created
-    interval : { step: 0, times: 10 }
   }, options);
   /**
    * Set Listener waiting for Http Server
    **/
-  var intervalId = setInterval(() => {
-    if (options.interval.step === options.interval.times)
-    throw new Error('Unable to connect an HTTP Server');
-    options.interval.step += 1;
-    if (app.server) start();
-  }, 1000);
+  app.on('started', start)
   /**
    * Setup Real Time Communications
    **/
-  function start() {
-    clearInterval(intervalId);
+  function start(server) {
     console.info('RTC server listening at %s', app.get('url').replace('http', 'ws'));
     // Lets create an instance of IO and reference it in app
-    var socket = io(app.server);
+    var socket = io(server);
     // Add a pubsub instanceable module
     app.pubsub = new Pubsub(socket);
     // Configure ioAuth

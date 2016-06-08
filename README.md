@@ -58,6 +58,40 @@ Thanks to the provided mixin, you are able to define in which Models you want to
 }
 ```
 
+# Update Server File
+
+Update the `server/server.js` as follows:
+
+```js
+var loopback = require('loopback');
+var boot = require('loopback-boot');
+
+var app = module.exports = loopback();
+
+app.start = function() {
+  // start the web server
+  return server = app.listen(function() {
+    app.emit('started', server); // Emit a server instance when loaded
+    var baseUrl = app.get('url').replace(/\/$/, '');
+    console.log('Web server listening at: %s', baseUrl);
+    if (app.get('loopback-component-explorer')) {
+      var explorerPath = app.get('loopback-component-explorer').mountPath;
+      console.log('Browse your REST API at %s%s', baseUrl, explorerPath);
+    }
+  });
+};
+
+// Bootstrap the application, configure models, datasources and middleware.
+// Sub-apps like REST API are mounted via boot scripts.
+boot(app, __dirname, function(err) {
+  if (err) throw err;
+
+  // start the server if `$ node server.js`
+  if (require.main === module)
+    app.start();
+});
+```
+
 # How to Subscribe for Events (Example)
 
 You can subscribe to any valid remote method within your model as follows:
