@@ -1,4 +1,7 @@
 
+### version 1.0.7
+
+- Fixed example documentation issues
 
 ### version 1.0.6
 

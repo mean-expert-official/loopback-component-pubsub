@@ -25,7 +25,7 @@ Update the  `server/component-config.json` as follows:
   "loopback-component-explorer": {
     "mountPath": "/explorer"
   },
-  "./components/loopback-component-pubsub": {
+  "loopback-component-pubsub": {
     "auth": false
   }
 }
@@ -41,7 +41,7 @@ Update the  `server/model-config.json` as follows:
         "loopback/server/mixins",
         "../common/mixins",
         "./mixins",
-        "./components/loopback-component-pubsub/mixins"
+        "../node_modules/loopback-component-pubsub/mixins"
     ]
 }
 ```

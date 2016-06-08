@@ -26,7 +26,7 @@ module.exports = (app, options) => {
   /**
    * Set Listener waiting for Http Server
    **/
-  app.on('started', start)
+  app.on('started', start);
   /**
    * Setup Real Time Communications
    **/
