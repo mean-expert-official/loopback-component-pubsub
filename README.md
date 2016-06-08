@@ -25,7 +25,9 @@ Update the  `server/component-config.json` as follows:
   "loopback-component-explorer": {
     "mountPath": "/explorer"
   },
-  "./components/loopback-component-pubsub": true
+  "./components/loopback-component-pubsub": {
+    "auth": false
+  }
 }
 
 ```
@@ -80,3 +82,8 @@ You can subscribe to any valid remote method within your model as follows:
 <body></body>
 </html>
 ````
+
+# TODO
+
+- Add Auth Documentation / Tutorial
+- Implement Clustering Functionality

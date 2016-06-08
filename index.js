@@ -1,25 +1,34 @@
-
+'use strict';
 /**
  * Dependencies
  **/
 var io = require('socket.io'),
-  ioAuth = require('socketio-auth'),
-  Pubsub = require('./pubsub'),
-  async = require('async')
-
-
-module.exports = function (app, options) {
-  'use strict';
+ioAuth = require('socketio-auth'),
+Pubsub = require('./pubsub'),
+async  = require('async')
+/**
+ * @module LoopBack Component PubSub
+ * @author Jonathan Casarrubias <http://twitter.com/johncasarrubias>
+ * @description
+ * This module integrates LoopBack with Socket IO in order to provide
+ * PubSub functionallity.
+ * 
+ * TODO:
+ * 
+ * Clusterize with socket.io adapter
+ */
+module.exports = (app, options) => {
   /**
    * Set Default Options
    */
   options = Object.assign({
-    interval: { step: 0, times: 10 }
-  }, options)
+    auth     : false, // TODO: Change defaults for true when a tutorial for this module is created
+    interval : { step: 0, times: 10 }
+  }, options);
   /**
    * Set Listener waiting for Http Server
    **/
-  var intervalId = setInterval(function () {
+  var intervalId = setInterval(() => {
     if (options.interval.step === options.interval.times)
     throw new Error('Unable to connect an HTTP Server');
     options.interval.step += 1;
@@ -36,28 +45,25 @@ module.exports = function (app, options) {
     // Add a pubsub instanceable module
     app.pubsub = new Pubsub(socket);
     // Configure ioAuth
-    /*ioAuth(socket, {
-      authenticate: function (ctx, value, callback) {
-        var AccessToken = app.models.OauthAccessToken;
-        //get credentials sent by the client
-        var token = AccessToken.find({
-          where: {
-            and: [{
-              token: value.id
-            }]
-          }
-        }, function (err, tokenDetail) {
-          if (err) throw err;
-          return (tokenDetail.length) ? callback(null, true) : callback(null, false);
-        });
-      }
-    });*/
+    if (options.auth) {
+      console.info('RTC authentication mechanism enabled');
+      ioAuth(socket, {
+        authenticate: (ctx, token, next) => {
+          var AccessToken = app.models.AccessToken;
+          //verify credentials sent by the client
+          var token = AccessToken.find({
+            where: { id: token.id || 0, userId: token.userId || 0 }
+          }, (err, tokenInstance) => next(err, tokenInstance ? true : false));
+        }
+      });
+    }
     // Handle Connection and Disconnection Events
-    socket.on('connection', function (socket) {
-      console.info('A new user is connected');
-      /*socket.on('authentication', function (value) {
+    socket.on('connection', socket => {
+      console.info('A client is trying to connect');
+      if (options.auth)
+      socket.on('authentication', value => {
         console.info('A user (%s) has been authenticated over web sockets', value.userId);
-      });*/
+      });
     });
   }
 }
