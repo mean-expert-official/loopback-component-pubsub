@@ -28,7 +28,7 @@ Update the  `server/component-config.json` as follows:
     "mountPath": "/explorer"
   },
   "loopback-component-pubsub": {
-    "auth": false
+    "auth": true
   }
 }
 

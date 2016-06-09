@@ -1,7 +1,11 @@
-### version 1.0.8
+### version 1.0.9
 
 - Improved Documentation
 - Auth Tweaks
+
+### version 1.0.8
+
+- Replaced by 1.0.9
 
 ### version 1.0.7
 

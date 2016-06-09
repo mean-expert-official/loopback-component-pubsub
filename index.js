@@ -21,7 +21,7 @@ module.exports = (app, options) => {
    * Set Default Options
    */
   options = Object.assign({
-    auth     : false, // TODO: Change defaults for true when a tutorial for this module is created
+    auth : true
   }, options);
   /**
    * Set Listener waiting for Http Server
