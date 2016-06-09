@@ -148,7 +148,7 @@ When using the [loopback-sdk-builder](https://www.npmjs.com/package/loopback-sdk
 ```js
 import { Component } from "@angular/core";
 import { HTTP_PROVIDERS } from '@angular/http';
-import { RoomApi } from './sdk';
+import { LoopBackConfig, RoomApi } from './sdk';
 
 @Component({
     selector: "my-app",
@@ -158,8 +158,9 @@ import { RoomApi } from './sdk';
 
 export class AppComponent {
     constructor(private room: RoomApi) {
-        room.setBaseURL('http://127.0.0.1:3000'); // or local network IP or public IP/DNS
-        room.setApiVersion('api');
+        // or local network IP or public IP/DNS
+        LoopBackConfig.setBaseURL('http://192.168.1.11:3000');
+        LoopBackConfig.setApiVersion('api');
         room.createIO().subscribe((res: { id: number | string }) => {
             alert(res.id);
         });

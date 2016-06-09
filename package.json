@@ -1,6 +1,6 @@
 {
   "name": "loopback-component-pubsub",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "A LoopBack component that provides publish/subscribe over WebSockets",
   "main": "index.js",
   "scripts": {

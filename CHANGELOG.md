@@ -1,7 +1,13 @@
-### version 1.0.9
+### version 1.0.10
 
 - Improved Documentation
+- Added Auth Examples
+- Added NativeScript Examples
 - Auth Tweaks
+
+### version 1.0.9
+
+- Replaced by 1.0.10
 
 ### version 1.0.8
 
