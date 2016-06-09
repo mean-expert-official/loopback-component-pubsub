@@ -1,3 +1,5 @@
+[![NPM](https://nodei.co/npm/loopback-component-pubsub.png?stars&downloads)](https://nodei.co/npm/loopback-component-pubsub/) [![NPM](https://nodei.co/npm-dl/loopback-component-pubsub.png)](https://nodei.co/npm/loopback-component-pubsub/)
+
 # LoopBack Component PubSub
 
 A [LoopBack Framework](http://loopback.io) Component that provides publish events over WebSockets.
@@ -176,20 +178,21 @@ When using the [loopback-sdk-builder](https://www.npmjs.com/package/loopback-sdk
 ```js
 import { Component } from "@angular/core";
 import { HTTP_PROVIDERS } from '@angular/http';
-import { UserApi, RoomApi } from './sdk';
+import { LoopBackConfig, UserApi, RoomApi } from './sdk';
 
 @Component({
     selector: "my-app",
     templateUrl: 'path/to/view.html'
-    providers: [RoomApi, HTTP_PROVIDERS]
+    providers: [HTTP_PROVIDERS, UserApi, RoomApi]
 })
 
 export class AppComponent {
     constructor(private room: RoomApi, private user: UserApi) {
         // or local network IP or public IP/DNS
-        user.setBaseURL('http://127.0.0.1:3000');
-        user.setApiVersion('api');
-        user.login({ email: '', password: '' }).subscribe(() => {
+        LoopBackConfig.setBaseURL('http://192.168.1.11:3000');
+        LoopBackConfig.setApiVersion('api');
+        user.login({ email: 'test@test.com', password: 'test' }).subscribe(res => {
+            console.info('User has been authenticated over HTTP', res);
             room.createIO().subscribe((res: { id: number | string }) => {
                 alert(res.id);
             });
@@ -197,7 +200,6 @@ export class AppComponent {
                 alert(res.text);
             });
         });
-    }
 }
 
 ```

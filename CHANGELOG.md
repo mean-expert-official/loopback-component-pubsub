@@ -1,3 +1,7 @@
+### version 1.0.8
+
+- Improved Documentation
+- Auth Tweaks
 
 ### version 1.0.7
 
