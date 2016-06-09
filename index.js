@@ -45,17 +45,16 @@ module.exports = (app, options) => {
           //verify credentials sent by the client
           var token = AccessToken.find({
             where: { id: token.id || 0, userId: token.userId || 0 }
-          }, (err, tokenInstance) => next(err, tokenInstance ? true : false));
+          }, (err, tokenInstance) => next(err, tokenInstance.length > 0 ? true : false));
+        },
+        postAuthenticate: () => {
+          socket.on('authentication', value => {
+            console.info('A user (%s) has been authenticated over web sockets', value.userId);
+          });
         }
       });
     }
     // Handle Connection and Disconnection Events
-    socket.on('connection', socket => {
-      console.info('A client is trying to connect');
-      if (options.auth)
-      socket.on('authentication', value => {
-        console.info('A user (%s) has been authenticated over web sockets', value.userId);
-      });
-    });
+    socket.on('connection', socket => console.info('A client is trying to connect'));
   }
 }

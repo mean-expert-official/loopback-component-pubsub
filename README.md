@@ -60,18 +60,12 @@ Thanks to the provided mixin, you are able to define in which Models you want to
 
 # Update Server File
 
-Update the `server/server.js` as follows:
+Update the start method within the `server/server.js` file as follows:
 
 ```js
-var loopback = require('loopback');
-var boot = require('loopback-boot');
-
-var app = module.exports = loopback();
-
 app.start = function() {
-  // start the web server
   return server = app.listen(function() {
-    app.emit('started', server); // Emit a server instance when loaded
+    app.emit('started', server);
     var baseUrl = app.get('url').replace(/\/$/, '');
     console.log('Web server listening at: %s', baseUrl);
     if (app.get('loopback-component-explorer')) {
@@ -80,19 +74,11 @@ app.start = function() {
     }
   });
 };
-
-// Bootstrap the application, configure models, datasources and middleware.
-// Sub-apps like REST API are mounted via boot scripts.
-boot(app, __dirname, function(err) {
-  if (err) throw err;
-
-  // start the server if `$ node server.js`
-  if (require.main === module)
-    app.start();
-});
 ```
 
-# How to Subscribe for Events (Example)
+# How to subscribe to events
+
+##### Un-Authenticated Vanilla JavaScript Example
 
 You can subscribe to any valid remote method within your model as follows:
 
@@ -117,7 +103,106 @@ You can subscribe to any valid remote method within your model as follows:
 </html>
 ````
 
+##### Authenticated Vanilla JavaScript Example
+
+You can subscribe to any valid remote method within your model as follows:
+
+```html
+<html>
+<head>
+  <title>Event Source Test</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var client;
+    // Ajax Request logic to login and to get a token [/POST]/api/users/login
+    // Use whatever method works best for you when doing AJAX Requests
+    userLogin(function onLogged(token) {
+      client = io('http://localhost:3000');
+      client.on('connect', function onConnect() {
+        client.emit('authentication', token);
+        client.on('unauthorized', function onUnauthorized(res) {
+          console.error('Unauthenticated', res);
+        });
+      });
+      // subscribe for newly created rooms 
+      client.on('[POST]/api/rooms', function (room) {
+        console.info('Room ', room);
+      });
+      // subscribe for new messages in the room with Id 1
+      client.on('[POST]/api/rooms/1/messages', function (message) {
+        console.info('Message ', message);
+      });
+    }); 
+  </script>
+</head>
+<body></body>
+</html>
+````
+
+##### NativeScript2 SDK Example Un-Authenticated
+
+When using the [loopback-sdk-builder](https://www.npmjs.com/package/loopback-sdk-builder)
+
+```js
+import { Component } from "@angular/core";
+import { HTTP_PROVIDERS } from '@angular/http';
+import { RoomApi } from './sdk';
+
+@Component({
+    selector: "my-app",
+    templateUrl: 'path/to/view.html'
+    providers: [RoomApi, HTTP_PROVIDERS]
+})
+
+export class AppComponent {
+    constructor(private room: RoomApi) {
+        room.setBaseURL('http://127.0.0.1:3000'); // or local network IP or public IP/DNS
+        room.setApiVersion('api');
+        room.createIO().subscribe((res: { id: number | string }) => {
+            alert(res.id);
+        });
+        room.__create__messagesIO(1).subscribe((res: { text: string }) => {
+            alert(res.text);
+        });
+    }
+}
+
+```
+
+##### NativeScript2 SDK Example Authenticated
+
+When using the [loopback-sdk-builder](https://www.npmjs.com/package/loopback-sdk-builder)
+
+```js
+import { Component } from "@angular/core";
+import { HTTP_PROVIDERS } from '@angular/http';
+import { UserApi, RoomApi } from './sdk';
+
+@Component({
+    selector: "my-app",
+    templateUrl: 'path/to/view.html'
+    providers: [RoomApi, HTTP_PROVIDERS]
+})
+
+export class AppComponent {
+    constructor(private room: RoomApi, private user: UserApi) {
+        // or local network IP or public IP/DNS
+        user.setBaseURL('http://127.0.0.1:3000');
+        user.setApiVersion('api');
+        user.login({ email: '', password: '' }).subscribe(() => {
+            room.createIO().subscribe((res: { id: number | string }) => {
+                alert(res.id);
+            });
+            room.__create__messagesIO(1).subscribe((res: { text: string }) => {
+                alert(res.text);
+            });
+        });
+    }
+}
+
+```
+
 # TODO
 
-- Add Auth Documentation / Tutorial
+
 - Implement Clustering Functionality
