@@ -161,10 +161,10 @@ export class AppComponent {
         // or local network IP or public IP/DNS
         LoopBackConfig.setBaseURL('http://192.168.1.11:3000');
         LoopBackConfig.setApiVersion('api');
-        room.createIO().subscribe((res: { id: number | string }) => {
+        room.onCreate().subscribe((res: { id: number | string }) => {
             alert(res.id);
         });
-        room.__create__messagesIO(1).subscribe((res: { text: string }) => {
+        room.onCreateMessages(1).subscribe((res: { text: string }) => {
             alert(res.text);
         });
     }
@@ -194,10 +194,10 @@ export class AppComponent {
         LoopBackConfig.setApiVersion('api');
         user.login({ email: 'test@test.com', password: 'test' }).subscribe(res => {
             console.info('User has been authenticated over HTTP', res);
-            room.createIO().subscribe((res: { id: number | string }) => {
+            room.onCreate().subscribe((res: { id: number | string }) => {
                 alert(res.id);
             });
-            room.__create__messagesIO(1).subscribe((res: { text: string }) => {
+            room.onCreateMessages(1).subscribe((res: { text: string }) => {
                 alert(res.text);
             });
         });

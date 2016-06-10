@@ -1,3 +1,7 @@
+### version 1.0.11
+
+- Updated NativeScript Documentation
+
 ### version 1.0.10
 
 - Improved Documentation
