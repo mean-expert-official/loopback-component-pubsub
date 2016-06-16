@@ -147,13 +147,12 @@ When using the [loopback-sdk-builder](https://www.npmjs.com/package/loopback-sdk
 
 ```js
 import { Component } from "@angular/core";
-import { HTTP_PROVIDERS } from '@angular/http';
-import { LoopBackConfig, RoomApi } from './sdk';
+import { API_PROVIDERS, LoopBackConfig, RoomApi } from './sdk';
 
 @Component({
     selector: "my-app",
-    templateUrl: 'path/to/view.html'
-    providers: [RoomApi, HTTP_PROVIDERS]
+    templateUrl: 'path/to/view.html',
+    providers: [ API_PROVIDERS ]
 })
 
 export class AppComponent {
@@ -178,13 +177,12 @@ When using the [loopback-sdk-builder](https://www.npmjs.com/package/loopback-sdk
 
 ```js
 import { Component } from "@angular/core";
-import { HTTP_PROVIDERS } from '@angular/http';
-import { LoopBackConfig, UserApi, RoomApi } from './sdk';
+import { API_PROVIDERS, LoopBackConfig, UserApi, RoomApi } from './sdk';
 
 @Component({
     selector: "my-app",
-    templateUrl: 'path/to/view.html'
-    providers: [HTTP_PROVIDERS, UserApi, RoomApi]
+    templateUrl: 'path/to/view.html',
+    providers: [ API_PROVIDERS ]
 })
 
 export class AppComponent {

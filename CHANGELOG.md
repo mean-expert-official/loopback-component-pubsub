@@ -1,3 +1,8 @@
+### version 1.0.12
+
+- Updated NativeScript Documentation
+- Fixed event emmiter for query params url
+
 ### version 1.0.11
 
 - Updated NativeScript Documentation
