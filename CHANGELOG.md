@@ -1,3 +1,6 @@
+### version 1.0.15
+
+- Fixed pubsub regex
 
 ### version 1.0.14
 
