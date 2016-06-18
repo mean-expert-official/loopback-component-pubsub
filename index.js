@@ -55,6 +55,6 @@ module.exports = (app, options) => {
       });
     }
     // Handle Connection and Disconnection Events
-    socket.on('connection', socket => console.info('A client is trying to connect'));
+    socket.on('connection', socket => console.info('A client has been connected'));
   }
 }

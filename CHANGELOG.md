@@ -1,3 +1,9 @@
+
+### version 1.0.13
+
+- Removed Event Emmiter for Login/Logout
+- Removed Event Emmiter for GET Method
+
 ### version 1.0.12
 
 - Updated NativeScript Documentation
