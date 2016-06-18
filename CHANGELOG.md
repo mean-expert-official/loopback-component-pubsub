@@ -1,8 +1,14 @@
 
-### version 1.0.13
+### version 1.0.14
 
 - Removed Event Emmiter for Login/Logout
-- Removed Event Emmiter for GET Method
+- Removed Event Emmiter for resetPassword
+- Removed Event Emmiter for GET Methods
+- Removed Event Emmiter for HEAD Methods
+
+### version 1.0.13
+
+- Replaced by 1.0.14
 
 ### version 1.0.12
 
