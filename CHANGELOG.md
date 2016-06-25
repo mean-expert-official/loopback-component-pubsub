@@ -1,3 +1,9 @@
+### version 1.0.16
+
+- Implemented Mixin Level Filters
+- Implemented Backward and Forward Messaging
+- Fixed messages to relation entities
+
 ### version 1.0.15
 
 - Fixed pubsub regex

@@ -21,7 +21,8 @@ module.exports = (app, options) => {
    * Set Default Options
    */
   options = Object.assign({
-    auth : true
+    auth  : true,
+    debug : false 
   }, options);
   /**
    * Set Listener waiting for Http Server
@@ -35,7 +36,7 @@ module.exports = (app, options) => {
     // Lets create an instance of IO and reference it in app
     var socket = io(server);
     // Add a pubsub instanceable module
-    app.pubsub = new Pubsub(socket);
+    app.pubsub = new Pubsub(socket, options);
     // Configure ioAuth
     if (options.auth) {
       console.info('RTC authentication mechanism enabled');
