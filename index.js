@@ -55,7 +55,9 @@ module.exports = (app, options) => {
         }
       });
     }
-    // Handle Connection and Disconnection Events
-    socket.on('connection', socket => console.info('A client has been connected'));
+    
+    socket.on('connection', connection => {
+      connection.on('lb-ping', () => connection.emit('lb-pong', new Date().getTime() / 1000));
+    });
   }
 }

@@ -1,3 +1,7 @@
+### version 1.0.17
+
+- Implemented Heartbeat to avoid disconnections
+
 ### version 1.0.16
 
 - Implemented Mixin Level Filters
