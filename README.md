@@ -1,4 +1,4 @@
-[![NPM](https://nodei.co/npm/loopback-component-pubsub.png?stars&downloads)](https://nodei.co/npm/loopback-component-pubsub/) [![NPM](https://nodei.co/npm-dl/loopback-component-pubsub.png)](https://nodei.co/npm/loopback-component-pubsub/)
+[![NPM](https://nodei.co/npm/loopback-component-universal.png?stars&downloads)](https://nodei.co/npm/loopback-component-universal/) [![NPM](https://nodei.co/npm-dl/loopback-component-universal.png)](https://nodei.co/npm/loopback-component-universal/)
 
 # LoopBack Component PubSub
 
