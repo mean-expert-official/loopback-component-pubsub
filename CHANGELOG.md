@@ -1,7 +1,3 @@
-### version 1.0.18
-
-- Implemented Clustering Functionality
-
 ### version 1.0.17
 
 - Implemented Heartbeat to avoid disconnections

@@ -1,7 +1,7 @@
 {
-  "name": "loopback-component-universal",
-  "version": "1.0.0-alpha.1",
-  "description": "A LoopBack component to adapt with Angular Universal and the LoopBack SDK Builder",
+  "name": "loopback-component-pubsub",
+  "version": "1.0.17",
+  "description": "A LoopBack component that provides publish/subscribe over WebSockets",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
